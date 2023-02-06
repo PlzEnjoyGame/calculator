@@ -18,7 +18,7 @@
 </template>
 
 <script>
-
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -32,10 +32,26 @@ export default {
       if (!this.name || !this.email || !this.review) {
         return;
       }
-      // handle the submission of the review
-      // e.g. send the data to a server using axios or save it to local storage
+      axios.post(
+          "https://my-json-server.typicode.com/PlzEnjoyGame/calculator/names",
+          this.$store.commit("SET_NAME", this.name)
+      ).catch(function (error) {
+        console.log("An error has occured: " + error)
+      });
+      axios.post(
+          "https://my-json-server.typicode.com/PlzEnjoyGame/calculator/emails",
+          this.$store.commit("SET_EMAIL", this.name)
+      ).catch(function (error) {
+        console.log("An error has occured: " + error)
+      });
+      axios.post(
+          "https://my-json-server.typicode.com/PlzEnjoyGame/calculator/reviews",
+          this.review,
+          alert("Your review has been successfully submitted!")
+      ).catch(function (error) {
+        console.log("An error has occured: " + error)
+      });
       console.log('Submitting review:', this.name, this.email, this.review);
-      console.log(this.$data)
       this.$store.commit("SET_NAME", this.name)
       this.$store.commit("SET_EMAIL", this.email);
       this.name = '',

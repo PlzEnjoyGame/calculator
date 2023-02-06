@@ -4,6 +4,7 @@
     <br>
     <button v-for="button in buttons" v-bind:key="button" @click="appendToDisplay(button)">{{ button }}</button>
     <log-component :log="log"></log-component>
+    <br />
     <router-link to="/review">Write a Review</router-link>
   </div>
 </template>

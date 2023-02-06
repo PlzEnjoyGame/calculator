@@ -3,7 +3,7 @@
     <h3>Write a Review</h3>
     <form @submit.prevent="submitReview">
       <label for="name">Name:</label>
-      <input type="text" id="name" v-model="name" required />
+      <input type="text" id="name" v-model="name" required/>
       <br />
       <label for="email">Email:</label>
       <input type="email" id="email" v-model="email" required />
@@ -13,6 +13,7 @@
       <br />
       <button id="submit" type="submit" :disabled="disableSubmit">Submit Review</button>
     </form>
+    <br />
     <router-link to="/">Back to Calculator</router-link>
   </div>
 </template>

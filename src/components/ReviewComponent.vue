@@ -62,7 +62,7 @@ export default {
   },
   computed: {
     disableSubmit() {
-      return !this.name || !this.email || !this.review;
+      return !this.name || !this.email || !this.email.includes("@") || !this.review;
     }
   }
 };

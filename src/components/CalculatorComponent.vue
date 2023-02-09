@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import LogComponent from "@/components/LogComponent";
+import LogComponent from "../components/LogComponent.vue";
 export default {
   components: {
     LogComponent

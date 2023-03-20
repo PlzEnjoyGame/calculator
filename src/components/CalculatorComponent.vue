@@ -11,6 +11,7 @@
 
 <script>
 import LogComponent from "../components/LogComponent.vue";
+import axios from "axios";
 export default {
   components: {
     LogComponent
@@ -26,6 +27,22 @@ export default {
     }
   },
   methods: {
+    calculate(expression) {
+      axios.post('http://localhost:7777/calculate', { expression })
+          .then(response => {
+            if (response.data.success) {
+              this.display = response.data.answer.toString();
+              this.lastAnswer = response.data.answer.toString();
+              this.log.push(`${response.data.calculation} = ${this.lastAnswer}`);
+            } else {
+              alert(response.data.message);
+            }
+          })
+          .catch(error => {
+            console.error(error);
+            alert('An error occurred while calculating the expression');
+          });
+    },
     appendToDisplay(val) {
       if (val === "C") {
         this.display = "";
@@ -34,9 +51,7 @@ export default {
       } else if (val === "Ans") {
         this.display += this.lastAnswer;
       } else if (val === "=") {
-        this.lastAnswer = eval(this.display);
-        this.log.push(`${this.display} = ${this.lastAnswer}`);
-        this.display = this.lastAnswer;
+        this.calculate(this.display)
         this.decimalCount = 0;
         this.allowedDecimals = 1;
       } else if (val === "+" || val === "-" || val === "*" || val === "/") {

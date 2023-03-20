@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     calculate(expression) {
-      axios.post('http://localhost:7777/calculate', { expression })
+      axios.post('http://localhost:8080/calculate', { expression })
           .then(response => {
             if (response.data.success) {
               this.display = response.data.answer.toString();
